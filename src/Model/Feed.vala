@@ -1,124 +1,109 @@
-//	This file is part of FeedReader.
+// This file is part of FeedReader.
 //
-//	FeedReader is free software: you can redistribute it and/or modify
-//	it under the terms of the GNU General Public License as published by
-//	the Free Software Foundation, either version 3 of the License, or
-//	(at your option) any later version.
+// FeedReader is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 //
-//	FeedReader is distributed in the hope that it will be useful,
-//	but WITHOUT ANY WARRANTY; without even the implied warranty of
-//	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//	GNU General Public License for more details.
+// FeedReader is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
 //
-//	You should have received a copy of the GNU General Public License
-//	along with FeedReader.  If not, see <http://www.gnu.org/licenses/>.
+// You should have received a copy of the GNU General Public License
+// along with FeedReader.  If not, see <http://www.gnu.org/licenses/>.
 
 public class FeedReader.feed : GLib.Object {
 
-	private string m_feedID;
-	private string m_title;
-	private string m_url;
-	private string? m_xmlURL;
-	private bool m_hasIcon;
-	private uint m_unread;
-	private string[] m_catIDs;
+    private string m_feedID ;
+    private string m_title ;
+    private string m_url ;
+    private string ? m_xmlURL ;
+    private bool m_hasIcon ;
+    private uint m_unread ;
+    private string[] m_catIDs ;
 
-	public feed(string feedID, string title, string url, bool hasIcon, uint unread, string[] catIDs, string? xmlURL = null)
-	{
-		m_feedID = feedID;
-		m_title = title;
-		m_url = url;
-		m_unread = unread;
-		m_catIDs = catIDs;
-		m_hasIcon = hasIcon;
-		m_xmlURL = xmlURL;
-	}
+    public feed (string feedID, string title, string url, bool hasIcon, uint unread, string[] catIDs, string ? xmlURL = null)
+        {
+        m_feedID = feedID ;
+        m_title = title ;
+        m_url = url ;
+        m_unread = unread ;
+        m_catIDs = catIDs ;
+        m_hasIcon = hasIcon ;
+        m_xmlURL = xmlURL ;
+        }
 
-	public string getFeedID()
-	{
-		return m_feedID;
-	}
+    public string getFeedID() {
+        return m_feedID ;
+        }
 
-	public string getTitle()
-	{
-		return m_title;
-	}
+    public string getTitle() {
+        return m_title ;
+        }
 
-	public void setTitle(string title)
-	{
-		m_title = title;
-	}
+    public void setTitle(string title) {
+        m_title = title ;
+        }
 
-	public string getURL()
-	{
-		return m_url;
-	}
+    public string getURL() {
+        return m_url ;
+        }
 
-	public bool hasIcon()
-	{
-		return m_hasIcon;
-	}
+    public bool hasIcon() {
+        return m_hasIcon ;
+        }
 
-	public uint getUnread()
-	{
-		return m_unread;
-	}
+    public uint getUnread() {
+        return m_unread ;
+        }
 
-	public string[] getCatIDs()
-	{
-		return m_catIDs;
-	}
+    public string[] getCatIDs() {
+        return m_catIDs ;
+        }
 
-	public string getCatString()
-	{
-		string catIDs = "";
-		foreach(string id in m_catIDs)
-		{
-			catIDs += id + ",";
-		}
+    public string getCatString() {
+        string catIDs = "" ;
+        foreach( string id in m_catIDs ){
+            catIDs += id + "," ;
+            }
 
-		return catIDs;
-	}
+        return catIDs ;
+        }
 
-	public bool hasCat(string catID)
-	{
-		foreach(string cat in m_catIDs)
-		{
-			if(cat == catID)
-				return true;
-		}
+    public bool hasCat(string catID) {
+        foreach( string cat in m_catIDs ){
+            if( cat == catID )
+                return true ;
+            }
 
-		return false;
-	}
+        return false ;
+        }
 
-	public void addCat(string catID)
-	{
-		m_catIDs += catID;
-	}
+    public void addCat(string catID) {
+        m_catIDs += catID ;
+        }
 
-	public void setCats(string[] catIDs)
-	{
-		m_catIDs = catIDs;
-	}
+    public void setCats(string[] catIDs) {
+        m_catIDs = catIDs ;
+        }
 
-	public bool isUncategorized()
-	{
-		if(m_catIDs.length == 0)
-			return true;
+    public bool isUncategorized() {
+        if( m_catIDs.length == 0 )
+            return true ;
 
-		if(m_catIDs.length == 1 && m_catIDs[0].contains("global.must"))
-			return true;
+        if( m_catIDs.length == 1 && m_catIDs[0].contains ("global.must"))
+            return true ;
 
-		return false;
-	}
+        return false ;
+        }
 
-	public string getXmlUrl()
-	{
-		return m_xmlURL;
-	}
+    public string getXmlUrl() {
+        return m_xmlURL ;
+        }
 
-	public void print()
-	{
-		Logger.debug("\ntitle: %s\nid: %s\nurl: %s\nunread: %u".printf(m_title, m_feedID, m_url, m_unread));
-	}
-}
+    public void print() {
+        Logger.debug ("\ntitle: %s\nid: %s\nurl: %s\nunread: %u".printf (m_title, m_feedID, m_url, m_unread)) ;
+        }
+
+    }
