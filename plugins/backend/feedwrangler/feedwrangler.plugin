@@ -1,0 +1,8 @@
+[Plugin]
+Module=feedwrangler
+Loader=C
+Name=Feed Wrangler Backend
+Description=This is just a demo
+Authors=Chris Lamberson <clamberson@gmail.com>
+Copyright=Copyright © 2017 Chris Lamberson
+Website=http://jangernert.github.io/FeedReader/

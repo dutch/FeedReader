@@ -8,6 +8,7 @@ option(FRESH "Enable FreshRSS backend" ON)
 option(FEEDBIN "Enable Feedbin backend" ON)
 option(FEEDHQ "Enable Feedbin backend" ON)
 option(BAZQUX "Enable Feedbin backend" ON)
+option(FEEDWRANGLER "Enable Feed Wrangler backend" ON)
 
 MESSAGE(STATUS "Backend TTRSS:	" ${TTRSS})
 MESSAGE(STATUS "Backend OWNCLOUD:	" ${OWNCLOUD})
@@ -19,6 +20,7 @@ MESSAGE(STATUS "Backend FRESH:	" ${FRESH})
 MESSAGE(STATUS "Backend FEEDBIN:	" ${FEEDBIN})
 MESSAGE(STATUS "Backend FEEDHQ:	" ${FEEDHQ})
 MESSAGE(STATUS "Backend BAZQUX:	" ${FEEDHQ})
+MESSAGE(STATUS "Backend FEEDWRANGLER: " ${FEEDWRANGLER})
 
 
 if(TTRSS)
@@ -60,3 +62,7 @@ endif(FEEDHQ)
 if(BAZQUX)
 	add_subdirectory(bazqux)
 endif(BAZQUX)
+
+if(FEEDWRANGLER)
+	add_subdirectory(feedwrangler)
+endif(FEEDWRANGLER)

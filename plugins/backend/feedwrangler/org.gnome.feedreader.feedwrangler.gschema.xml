@@ -1,0 +1,4 @@
+<schemalist>
+	<schema id="org.gnome.feedreader.feedwrangler" path="/org/gnome/feedreader/feedwrangler/" gettext-domain="feedreader">
+	</schema>
+</schemalist>
