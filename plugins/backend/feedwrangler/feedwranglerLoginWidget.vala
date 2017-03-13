@@ -5,6 +5,8 @@
 //--------------------------------------------------------------------------------------
 
 public class FeedReader.feedwranglerLoginWidget : Peas.ExtensionBase, LoginInterface {
+	private Gtk.Entry m_userEntry;
+	private Gtk.Entry m_passwordEntry;
 
 	//--------------------------------------------------------------------------------------
 	// Called when loading plugin. Setup all the widgets here and add them to
@@ -14,7 +16,7 @@ public class FeedReader.feedwranglerLoginWidget : Peas.ExtensionBase, LoginInter
 	//--------------------------------------------------------------------------------------
 	public void init()
 	{
-		warning("Initing my plugin");
+
 	}
 
 
@@ -23,7 +25,7 @@ public class FeedReader.feedwranglerLoginWidget : Peas.ExtensionBase, LoginInter
 	//--------------------------------------------------------------------------------------
 	public string getWebsite()
 	{
-		return "https://feedwrangler.com";
+		return "https://feedwrangler.net";
 	}
 
 
@@ -61,7 +63,53 @@ public class FeedReader.feedwranglerLoginWidget : Peas.ExtensionBase, LoginInter
 	//--------------------------------------------------------------------------------------
 	public Gtk.Box? getWidget()
 	{
-		return null;
+		var box = new Gtk.Box(Gtk.Orientation.VERTICAL, 10);
+		box.valign = Gtk.Align.CENTER;
+		box.halign = Gtk.Align.CENTER;
+
+		var loginLabel = new Gtk.Label(_("Please login to Feed Wrangler"));
+		loginLabel.get_style_context().add_class("h2");
+		loginLabel.set_justify(Gtk.Justification.CENTER);
+		loginLabel.set_lines(3);
+		box.pack_start(loginLabel, false, false, 10);
+
+		var logo = new Gtk.Image.from_icon_name("feed-service-feedwrangler", Gtk.IconSize.MENU);
+		box.pack_start(logo, false, false, 10);
+
+		var grid = new Gtk.Grid();
+		grid.set_column_spacing(10);
+		grid.set_row_spacing(10);
+		grid.set_valign(Gtk.Align.CENTER);
+		grid.set_halign(Gtk.Align.CENTER);
+
+		var userLabel = new Gtk.Label(_("Username:"));
+		userLabel.set_alignment(1.0f, 0.5f);
+		userLabel.set_hexpand(true);
+		grid.attach(userLabel, 0, 0, 1, 1);
+
+		m_userEntry = new Gtk.Entry();
+		m_userEntry.activate.connect(writeData);
+		grid.attach(m_userEntry, 1, 0, 1, 1);
+
+		var passwordLabel = new Gtk.Label(_("Password:"));
+		passwordLabel.set_alignment(1.0f, 0.5f);
+		passwordLabel.set_hexpand(true);
+		grid.attach(passwordLabel, 0, 1, 1, 1);
+
+		m_passwordEntry = new Gtk.Entry();
+		m_passwordEntry.activate.connect(writeData);
+		grid.attach(m_passwordEntry, 1, 1, 1, 1);
+
+		box.pack_start(grid, true, true, 10);
+
+		var loginButton = new Gtk.Button.with_label(_("Login"));
+		loginButton.halign = Gtk.Align.END;
+		loginButton.set_size_request(80, 30);
+		loginButton.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+		loginButton.clicked.connect(() => { login(); });
+		box.pack_end(loginButton, false, false, 10);
+
+		return box;
 	}
 
 
@@ -88,7 +136,7 @@ public class FeedReader.feedwranglerLoginWidget : Peas.ExtensionBase, LoginInter
 	//--------------------------------------------------------------------------------------
 	public bool needWebLogin()
 	{
-		return true;
+		return false;
 	}
 
 
